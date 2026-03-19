@@ -1,0 +1,251 @@
+.canvas-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 50% 40%, #15151f 0%, var(--bg) 70%);
+}
+
+.drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.drop-card {
+  border: 1.5px dashed var(--border);
+  border-radius: 22px;
+  padding: 56px 72px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s var(--ease);
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.drop-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.drop-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow), 0 0 80px rgba(124, 106, 239, 0.06);
+}
+
+.drop-card:hover::before {
+  opacity: 1;
+}
+
+.drop-card .di {
+  margin-bottom: 18px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-card .dt {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.drop-card .dh {
+  font-size: 12px;
+  color: var(--text-muted);
+  position: relative;
+  line-height: 1.7;
+}
+
+.drop-card kbd {
+  padding: 3px 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.canvas-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.canvas-wrap.tool-rect,
+.canvas-wrap.tool-arrow {
+  cursor: crosshair;
+}
+
+.canvas-wrap.tool-freehand {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%237c6aef'/%3E%3C/svg%3E") 10 10, crosshair;
+}
+
+.canvas-wrap.tool-point {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='7' fill='none' stroke='%237c6aef' stroke-width='1.5'/%3E%3Ccircle cx='11' cy='11' r='2' fill='%237c6aef'/%3E%3C/svg%3E") 11 11, crosshair;
+}
+
+.canvas-wrap.panning {
+  cursor: grabbing !important;
+}
+
+.canvas-transform {
+  transform-origin: 0 0;
+  position: absolute;
+}
+
+.canvas-inner {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.canvas-inner img {
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.canvas-inner svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.canvas-inner svg g.interactive {
+  pointer-events: all;
+}
+
+.canvas-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(17, 17, 22, 0.9);
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-sub);
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+
+.zoom-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.zoom-pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-sub);
+  padding: 5px 8px;
+  min-width: 46px;
+  text-align: center;
+  user-select: none;
+}
+
+.zoom-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.12s;
+  line-height: 1;
+}
+
+.zoom-arrow:hover {
+  background: var(--surface3);
+  color: var(--text);
+}
+
+.zoom-arrow:active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.preset-trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+  color: var(--text-sub);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+.preset-trigger:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-dim);
+}
+
+.preset-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 5px;
+  min-width: 190px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  animation: popIn 0.18s var(--ease);
+}
+
+.preset-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-sub);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.12s;
+}
+
+.preset-opt:hover {
+  background: var(--surface3);
+  color: var(--text);
+}

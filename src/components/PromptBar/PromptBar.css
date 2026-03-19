@@ -1,0 +1,66 @@
+.prompt-bar {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.prompt-label {
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--bg-elevated);
+  padding: 0 8px;
+}
+
+.prompt-text {
+  flex: 1;
+  padding: 18px 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-sub);
+  overflow-y: auto;
+  max-height: 160px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.prompt-text.empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.prompt-copy {
+  padding: 0 28px;
+  border: none;
+  border-left: 1px solid var(--border-sub);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.prompt-copy:hover {
+  background: var(--accent-dim);
+}
+
+.prompt-copy.copied {
+  background: var(--green);
+  color: white;
+}
