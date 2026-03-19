@@ -25,7 +25,7 @@ export function AnnotationPanel() {
     }
   };
 
-  const handleCommentSave = (id: number) => {
+  const handleCommentSave = (_id: number) => {
     setEditingId(null);
   };
 

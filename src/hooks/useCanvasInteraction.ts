@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { useStore } from '../store/store';
-import type { Annotation, DrawingState, Point } from '../store/types';
+import type { Annotation, DrawingState } from '../store/types';
 import { relPos } from '../utils/geometry';
 import { ZOOM_MIN, ZOOM_MAX } from '../utils/constants';
 

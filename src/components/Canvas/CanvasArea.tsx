@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect, forwardRef } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import { useStore } from '../../store/store';
 import { useCanvasInteraction } from '../../hooks/useCanvasInteraction';
 import { useImageLoader } from '../../hooks/useImageLoader';
@@ -28,7 +28,6 @@ export function CanvasArea({ canvasWrapRef, svgRef }: CanvasAreaProps) {
   const annotations = useStore(s => s.annotations);
   const selectedId = useStore(s => s.selectedId);
   const setSelectedId = useStore(s => s.setSelectedId);
-  const moveAnnotation = useStore(s => s.moveAnnotation);
   const resizeAnnotation = useStore(s => s.resizeAnnotation);
 
   const { handleFile } = useImageLoader(canvasWrapRef);

@@ -1,5 +1,6 @@
-import { create } from 'zustand';
+import { create, useStore as useZustandStore } from 'zustand';
 import { temporal } from 'zundo';
+import type { TemporalState } from 'zundo';
 import type { AppState, Annotation } from './types';
 import { MAX_HISTORY } from '../utils/constants';
 
@@ -143,11 +144,10 @@ export const useStore = create<AppState>()(
   )
 );
 
+type PartialState = { annotations: Annotation[]; selectedId: number | null };
+
 export const useTemporalStore = <T>(
-  selector: (state: {
-    undo: () => void;
-    redo: () => void;
-    pastStates: { annotations: Annotation[]; selectedId: number | null }[];
-    futureStates: { annotations: Annotation[]; selectedId: number | null }[];
-  }) => T,
-) => useStore.temporal(selector);
+  selector: (state: TemporalState<PartialState>) => T,
+): T => {
+  return useZustandStore(useStore.temporal, selector);
+};

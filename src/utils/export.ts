@@ -1,11 +1,8 @@
-import type { Annotation } from '../store/types';
-import { PRI } from './constants';
-
 export async function exportAnnotatedPNG(
   imgSrc: string,
   imgW: number,
   imgH: number,
-  annotations: Annotation[],
+  _annotations: unknown[],
   projectName: string,
   svgElement: SVGSVGElement | null,
 ): Promise<void> {
